@@ -35,7 +35,7 @@ export default function Home() {
 
       // 计算精确的边界
       const calculateBounds = () => {
-        if (!dragAreaRef.current) return {};
+        if (!dragAreaRef.current) return { left: 0, top: 0, right: 0, bottom: 0 };
 
         const dragArea = dragAreaRef.current;
         const dragRect = dragArea.getBoundingClientRect();
@@ -110,9 +110,9 @@ export default function Home() {
           const x = parseFloat(span.style.left) || 0;
           const y = parseFloat(span.style.top) || 0;
 
-          // 边界检查 - 强制回到边界内
-          const clampedX = Math.max(bounds.left, Math.min(x, bounds.right));
-          const clampedY = Math.max(bounds.top, Math.min(y, bounds.bottom));
+          // 边界检查 - 强制回到边界内（修复类型错误）
+          const clampedX = Math.max(bounds.left || 0, Math.min(x, bounds.right || 0));
+          const clampedY = Math.max(bounds.top || 0, Math.min(y, bounds.bottom || 0));
 
           if (x !== clampedX || y !== clampedY) {
             gsap.to(span, {

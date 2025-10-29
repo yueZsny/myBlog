@@ -163,7 +163,7 @@ export default function MainContainer() {
           <div
             className="selectOptions"
             ref={selectOptionsRef}
-            onMouseMove={(e) => handleMouseMove(e, activeTab)}
+            onMouseMove={handleMouseMove}  // 移除第二个参数
             onMouseLeave={() => calculateSliderPosition(activeTab)}
           >
             {/* 滑块 */}
