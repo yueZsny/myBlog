@@ -1,0 +1,14 @@
+# 包含所有文件
+include:
+  - "src/**/*"
+  - "*.tsx"
+  - "*.ts"
+
+# 排除不需要的文件
+exclude:
+  - "node_modules"
+  - "*.log"
+  - "*.tmp"
+
+# 其他配置
+safe: false
