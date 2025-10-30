@@ -35,7 +35,11 @@ export default function Home() {
 
       // 计算精确的边界
       const calculateBounds = () => {
+<<<<<<< HEAD
         if (!dragAreaRef.current) return { left: 0, top: 0, right: 0, bottom: 0 };
+=======
+        if (!dragAreaRef.current) return null; // 返回null而不是空对象
+>>>>>>> f2d2b4ac98a27a13740f2fd05976382594390f49
 
         const dragArea = dragAreaRef.current;
         const dragRect = dragArea.getBoundingClientRect();
@@ -110,17 +114,20 @@ export default function Home() {
           const x = parseFloat(span.style.left) || 0;
           const y = parseFloat(span.style.top) || 0;
 
-          // 边界检查 - 强制回到边界内（修复类型错误）
-          const clampedX = Math.max(bounds.left || 0, Math.min(x, bounds.right || 0));
-          const clampedY = Math.max(bounds.top || 0, Math.min(y, bounds.bottom || 0));
+          // 边界检查 - 强制回到边界内（添加类型检查）
+          if (bounds && typeof bounds.left === 'number' && typeof bounds.right === 'number' &&
+              typeof bounds.top === 'number' && typeof bounds.bottom === 'number') {
+            const clampedX = Math.max(bounds.left, Math.min(x, bounds.right));
+            const clampedY = Math.max(bounds.top, Math.min(y, bounds.bottom));
 
-          if (x !== clampedX || y !== clampedY) {
-            gsap.to(span, {
-              x: clampedX,
-              y: clampedY,
-              duration: 0.3,
-              ease: "power2.out"
-            });
+            if (x !== clampedX || y !== clampedY) {
+              gsap.to(span, {
+                x: clampedX,
+                y: clampedY,
+                duration: 0.3,
+                ease: "power2.out"
+              });
+            }
           }
         },
 
