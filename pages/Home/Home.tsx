@@ -35,11 +35,7 @@ export default function Home() {
 
       // 计算精确的边界
       const calculateBounds = () => {
-<<<<<<< HEAD
-        if (!dragAreaRef.current) return { left: 0, top: 0, right: 0, bottom: 0 };
-=======
         if (!dragAreaRef.current) return null; // 返回null而不是空对象
->>>>>>> f2d2b4ac98a27a13740f2fd05976382594390f49
 
         const dragArea = dragAreaRef.current;
         const dragRect = dragArea.getBoundingClientRect();
